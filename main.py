@@ -1,35 +1,21 @@
 import discord
-from bot_mantik import *
+from discord.ext import commands
 
-# ayricaliklar (intents) değişkeni botun ayrıcalıklarını depolayacak
 intents = discord.Intents.default()
-# Mesajları okuma ayrıcalığını etkinleştirelim
 intents.message_content = True
-# client (istemci) değişkeniyle bir bot oluşturalım ve ayrıcalıkları ona aktaralım
-client = discord.Client(intents=intents)
 
-@client.event
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
 async def on_ready():
-    print(f'Sunucuya başarılı bir şekilde giriş yapıldı, Çağan bey.')
+    print(f'{bot.user} olarak giriş yaptık')
 
-@client.event
-async def on_message(message):
-    
-    
-    if message.author == client.user:
-        return
-    if message.content.startswith('Merhaba'):
-        await message.channel.send("Hoş Geldin!")
-    elif message.content.startswith('Şifre'):
-        await message.channel.send(sifre_uret(10))
-    elif message.content.startswith('görüşürüz'):
-        await message.channel.send("\U0001f642")
-    elif message.content.startswith('emoji'):
-        await message.channel.send(emoji_olusturucu())
-    elif message.content.startswith('para'):
-        await message.channel.send(yazi_tura())
-    else:
-        await message.channel.send("Bu komutu anlayamadım :(")
-    
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Merhaba {bot.user}! Ben bir botum!')
 
-client.run("MTE0NTMwMTcxODUzNjU3Mjk0OA.GLpCXn.iXOB1Tdl02253qj7ySYfIXr8fbA3cmhgWgEuH0")
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+bot.run("MTE0NTMwMTcxODUzNjU3Mjk0OA.GRgFZA.NJxBbKMESO71XeJa9xLhqNLnDcB-dGNk8erkk8")

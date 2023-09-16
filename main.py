@@ -74,4 +74,4 @@ async def ban(ctx, member: discord.Member, *, sebep):
 
 
 
-bot.run("MTE0NTMwMTcxODUzNjU3Mjk0OA.Gjk8NJ.CSrYwai5grvA_sEKhsugHHnWABdSEZ9R7tkYbg")
+bot.run("token")
